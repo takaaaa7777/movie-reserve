@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','admin_flg'
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * このユーザが登録している予約情報。（Reserveモデルとの関係を定義）
+     */
+    public function reserves() {
+        return $this->hasMany(Reserve::class);
+    }
+    
 }
